@@ -11,6 +11,7 @@ const DashboardPage = async () => {
 	const bookTabs = [{ label: 'Книжки' }, { label: 'Полиці' }, { label: 'Теги' }, { label: 'Список бажань' }];
 	const session = await auth();
 	const books: Book[] = await prisma.book.findMany({ where: { user_id: session?.user?.id } });
+	console.log(session?.user, 'use');
 	return (
 		<div className='px-6'>
 			<SearchModal books={books} />
