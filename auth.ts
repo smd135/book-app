@@ -13,14 +13,15 @@ export const {
 	session: { strategy: 'jwt' },
 	callbacks: {
 		session: async ({ session, token, user }) => {
-			if (user) {
-				user.id = token.sub || '';
+			if (session?.user) {
+				session.user.id = token.sub || '';
 			}
 			return session;
 		},
 		jwt: async ({ session, user, token }) => {
 			if (user) {
-				user.id = user.id;
+				token.id = user.id;
+				token.name = user.name;
 			}
 			return token;
 		},
