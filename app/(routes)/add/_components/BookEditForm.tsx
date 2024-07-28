@@ -11,8 +11,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-	book_title: z.string().min(1, { message: 'Введіть назву книги' }),
-	book_author: z.string().min(1, { message: 'Введіть автора книги' }),
+	title: z.string().min(1, { message: 'Введіть назву книги' }),
+	author: z.string().min(1, { message: 'Введіть автора книги' }),
 	page_count: z.string().optional(),
 });
 
@@ -22,7 +22,7 @@ export const BookEditForm = () => {
 
 	const { register, handleSubmit, formState } = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: { book_title: '', book_author: '', page_count: '' },
+		defaultValues: { title: '', author: '', page_count: '' },
 	});
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
@@ -56,7 +56,7 @@ export const BookEditForm = () => {
 						label='Назва'
 						register={register}
 						placeholder='назва книги'
-						name='book_title'
+						name='title'
 						disabled={isLoading}
 						errors={formState.errors}
 					/>
@@ -64,7 +64,7 @@ export const BookEditForm = () => {
 						label='Автор'
 						register={register}
 						placeholder='автор книги'
-						name='book_author'
+						name='author'
 						disabled={isLoading}
 						errors={formState.errors}
 					/>

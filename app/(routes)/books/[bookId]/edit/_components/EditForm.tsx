@@ -14,17 +14,17 @@ import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-	book_title: z.string().min(1, { message: 'Введіть назву книги' }),
-	book_author: z.string().min(1, { message: 'Введіть автора книги' }),
+	title: z.string().min(1, { message: 'Введіть назву книги' }),
+	author: z.string().min(1, { message: 'Введіть автора книги' }),
 	page_count: z.coerce.number(),
 });
 export const EditForm = ({ book }: { book: Book }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
-	const { id, book_title, book_cover_url, book_author, page_count } = book;
+	const { id, title, cover_url, author, page_count } = book;
 	const { register, handleSubmit, formState } = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: { book_title, book_author, page_count: Number(page_count) || 0 },
+		defaultValues: { title, author, page_count: Number(page_count) || 0 },
 	});
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -50,8 +50,8 @@ export const EditForm = ({ book }: { book: Book }) => {
 			</div>
 			<div className='flex flex-col gap-3 mt-4'>
 				<div className='relative w-36 h-56 '>
-					{book_cover_url ? (
-						<Image src={book_cover_url || ''} alt='book cover' fill className='object-cover rounded-lg' />
+					{cover_url ? (
+						<Image src={cover_url || ''} alt='book cover' fill className='object-cover rounded-lg' />
 					) : (
 						<span className='flex justify-center items-center h-24 bg-[#9e9b9b]'>
 							<GoImage className='text-white' size={18} />
@@ -63,7 +63,7 @@ export const EditForm = ({ book }: { book: Book }) => {
 						label='Назва'
 						register={register}
 						placeholder='назва книги'
-						name='book_title'
+						name='title'
 						disabled={isLoading}
 						errors={formState.errors}
 					/>
@@ -71,7 +71,7 @@ export const EditForm = ({ book }: { book: Book }) => {
 						label='Автор'
 						register={register}
 						placeholder='автор книги'
-						name='book_author'
+						name='author'
 						disabled={isLoading}
 						errors={formState.errors}
 					/>

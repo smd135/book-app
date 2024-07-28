@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GoPlusCircle, GoImage } from 'react-icons/go';
 import { LiaReadme } from 'react-icons/lia';
-import { PiImageDuotone } from 'react-icons/pi';
 
 export const BooksContent = ({ userId, books }: { userId: string; books: Book[] }) => {
 	return (
@@ -33,8 +32,8 @@ export const BooksContent = ({ userId, books }: { userId: string; books: Book[] 
 						{books?.map((book: Book) => (
 							<Link href={`/books/${book.id}`} key={book.id} className='w-full flex items-center gap-4'>
 								<div className='relative w-24 h-24'>
-									{book.book_cover_url ? (
-										<Image src={book.book_cover_url} alt='book cover' fill className='object-cover' />
+									{book.cover_url ? (
+										<Image src={book.cover_url} alt='book cover' fill className='object-cover' />
 									) : (
 										<span className='flex justify-center items-center h-24 bg-[#9e9b9b]'>
 											<GoImage className='text-white' size={18} />
@@ -42,8 +41,8 @@ export const BooksContent = ({ userId, books }: { userId: string; books: Book[] 
 									)}
 								</div>
 								<div className='w-full px-2'>
-									<h3 className='font-semibold'>{book.book_title}</h3>
-									<p className='text-sm text-secondary'>{book.book_author}</p>
+									<h3 className='font-semibold'>{book.title}</h3>
+									<p className='text-sm text-secondary'>{book.author}</p>
 									<div className='mt-2 h-[3px] w-full bg-[#acacac] rounded-sm'></div>
 									<p className='text-xs text-secondary'>0%</p>
 									<div className='pt-1 text-xs flex items-center gap-1'>

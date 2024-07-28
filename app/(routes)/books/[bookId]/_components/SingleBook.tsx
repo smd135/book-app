@@ -15,7 +15,6 @@ const halfStar = rating - wholeStars || null;
 export const SingleBook = ({ book, bookId }: { book: Book[]; bookId: string }) => {
 	const pathname = usePathname();
 	const router = useRouter();
-	const searchParams = useSearchParams();
 
 	const onBookMenu = () => {
 		const url = qs.stringifyUrl(
@@ -55,8 +54,8 @@ export const SingleBook = ({ book, bookId }: { book: Book[]; bookId: string }) =
 				<div>
 					<div key={book.id} className='flex flex-col items-center gap-4'>
 						<div className='relative w-36 h-56 '>
-							{book.book_cover_url ? (
-								<Image src={book.book_cover_url} alt='book cover' fill className='object-cover rounded-lg' />
+							{book.cover_url ? (
+								<Image src={book.cover_url} alt='book cover' fill className='object-cover rounded-lg' />
 							) : (
 								<span className='flex justify-center items-center h-24 bg-[#9e9b9b]'>
 									<GoImage className='text-white' size={18} />
@@ -65,8 +64,8 @@ export const SingleBook = ({ book, bookId }: { book: Book[]; bookId: string }) =
 						</div>
 						<div className='w-full px-4 flex justify-center text-center'>
 							<div>
-								<h3 className='font-semibold text-lg'>{book.book_title}</h3>
-								<p className='text-md text-secondary'>{book.book_author}</p>
+								<h3 className='font-semibold text-lg'>{book.title}</h3>
+								<p className='text-md text-secondary'>{book.author}</p>
 							</div>
 						</div>
 						{/* Start rating */}

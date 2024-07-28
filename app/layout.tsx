@@ -2,12 +2,16 @@ import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'react-hot-toast';
+import localFont from 'next/font/local';
 import { BottomNavbar } from '@/components/shared/BottomNavbar';
 import { AddBookDrawer } from '@/components/AddBookDrawer';
 import { BlurOverlay } from '@/components/BlurOverlay';
 import { FcCheckmark } from 'react-icons/fc';
 
-const nutito = Nunito({ subsets: ['latin', 'cyrillic'], weight: ['300', '400', '500', '600', '700'] });
+const nutito = localFont({
+	src: './Nunito-VariableFont_wght.ttf',
+	display: 'swap',
+});
 
 export const metadata: Metadata = {
 	title: 'Book App',

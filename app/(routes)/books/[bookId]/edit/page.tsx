@@ -1,4 +1,3 @@
-import { axiosInstance } from '@/lib/axiosFetcher';
 import { prisma } from '@/lib/prisma';
 import { EditForm } from './_components/EditForm';
 import { redirect } from 'next/navigation';

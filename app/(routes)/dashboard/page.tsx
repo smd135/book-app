@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Book } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { BooksContent } from './_components/BooksContent';
+import SearchModal from './_components/SearchModal';
 
 const DashboardPage = async () => {
 	const isTabActive = true;
@@ -12,6 +13,7 @@ const DashboardPage = async () => {
 	const books: Book[] = await prisma.book.findMany({ where: { user_id: session?.user?.id } });
 	return (
 		<div className='px-6'>
+			<SearchModal books={books} />
 			<div>
 				<div className='flex items-baseline gap-1'>
 					<p className='font-bold text-2xl leading-loose tracking-normal'>Книжкова полиця</p>
@@ -33,21 +35,21 @@ const DashboardPage = async () => {
 				<div className='mt-4 flex items-center gap-x-2'>
 					<div className='rounded-md p-1 border text-secondary'>
 						<button type='button' className='realtive flex items-center gap-1 text-sm'>
-							<GoSearch />
+							<GoSearch className='mb-0.5' size={16} />
 							Пошук
 							<GoChevronDown />
 						</button>
 					</div>
 					<div className='rounded-md p-1 border text-secondary'>
 						<button type='button' className='realtive flex items-center gap-1 text-sm'>
-							<GoFilter />
+							<GoFilter size={16} />
 							Фільтр
 							<GoChevronDown />
 						</button>
 					</div>
 					<div className='rounded-md p-1 border text-secondary'>
 						<button type='button' className='realtive flex items-center gap-1 text-sm'>
-							<GoSortDesc />
+							<GoSortDesc size={16} />
 							Сортувати
 							<GoChevronDown />
 						</button>

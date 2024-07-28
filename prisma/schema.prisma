@@ -37,15 +37,15 @@ model Account {
 }
 
 model Book {
-   id             String      @id @default(uuid())
-   book_cover_url String?
-   book_title     String
-   book_author    String
-   page_count     Int?
-   book_shelf     BookShelf[]
-   user_id        String
-   users          User?       @relation(fields: [user_id], references: [id])
-   bookShelfId    String?
+   id          String      @id @default(uuid())
+   cover_url   String?
+   title       String
+   author      String
+   page_count  Int?
+   shelf       BookShelf[]
+   user_id     String
+   users       User?       @relation(fields: [user_id], references: [id])
+   bookShelfId String?
 
    finished  Boolean  @default(false)
    createdAt DateTime @default(now())
