@@ -1,0 +1,61 @@
+generator client {
+   provider = "prisma-client-js"
+}
+
+datasource db {
+   provider = "sqlite"
+   url      = env("DATABASE_URL")
+}
+
+model User {
+   id            String    @id @default(uuid())
+   username      String?
+   email         String?   @unique
+   emailVerified DateTime?
+   image         String?
+   password      String?
+   accounts      Account[]
+   books         Book[]
+}
+
+model Account {
+   id                String  @id @default(uuid())
+   userId            String
+   type              String
+   provider          String
+   providerAccountId String
+   refresh_token     String?
+   access_token      String?
+   expires_at        Int?
+   token_type        String?
+   scope             String?
+   id_token          String?
+   session_state     String?
+   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+   @@unique([provider, providerAccountId])
+}
+
+model Book {
+   id             String      @id @default(uuid())
+   book_cover_url String?
+   book_title     String
+   book_author    String
+   page_count     Int?
+   book_shelf     BookShelf[]
+   user_id        String
+   users          User?       @relation(fields: [user_id], references: [id])
+   bookShelfId    String?
+
+   finished  Boolean  @default(false)
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+}
+
+model BookShelf {
+   id        String   @id @default(uuid())
+   books     Book     @relation(fields: [book_id], references: [id])
+   book_id   String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+}
