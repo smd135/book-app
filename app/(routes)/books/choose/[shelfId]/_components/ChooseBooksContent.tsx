@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { LiaReadme } from 'react-icons/lia';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useChoosedBooksStore } from '@/lib/stores/useChoosedBooksStore';
 
@@ -17,7 +17,9 @@ export const ChooseBooksContent = ({ books, shelfId }: { books: Book[]; shelfId:
 	const debouncedSearchValue = useDebounce(searchValue, 1000);
 	const { setChoosedBooks } = useChoosedBooksStore((state) => state);
 	const { choosedBooks } = useChoosedBooksStore((state) => state);
+	//------------------------------------------
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	const onClick = async () => {
 		try {
@@ -98,11 +100,11 @@ export const ChooseBooksContent = ({ books, shelfId }: { books: Book[]; shelfId:
 					</>
 					<button
 						onClick={onClick}
-						className='mt-4 py-1 text-white text-center font-semibold text-lg rounded-xl w-full bg-black disabled:bg-neutral-700'
+						className='mt-4 py-1 text-white text-center font-medium text-lg rounded-xl w-full bg-black disabled:bg-neutral-700'
 						type='submit'
 						disabled={isLoading || !choosedBooks.length}
 					>
-						ВИБРАТИ
+						Вибрати
 					</button>
 				</div>
 			)}

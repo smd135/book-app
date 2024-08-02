@@ -60,7 +60,6 @@ export const AddBookDrawer = () => {
 								<p className='font-medium'>Сканувати ISBN книжки</p>
 							</span>
 						</div>
-						<div className='w-full h-6 bg-neutral-100 absolute bottom-0 left-0 rounded-b-3xl' />
 					</div>
 				</div>
 			)}

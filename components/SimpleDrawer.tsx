@@ -42,9 +42,9 @@ export const SimpleDrawer = ({ children, queryKey, queryValues, className }: Sim
 				<div
 					ref={drawerRef}
 					className={clsx(
-						'bg-white absolute bottom-0 left-0 min-h-[16rem] z-20 w-full opacity-0 transform  -translate-y-full transition-all duration-300 rounded-xl shadow-sm border-t-2 border-gray-100',
+						'bg-white absolute -translate-y-[100vh] left-0 min-h-[16rem] z-50 w-full opacity-0   rounded-xl shadow-sm border-t-2 border-gray-100',
 						className,
-						showDrawer && 'opacity-100 bottom-0  transform -translate-y-[1.5rem] border-t-2 border-gray-100'
+						showDrawer && 'opacity-100  bottom-[48px] transform translate-y-[1.5rem] border-t-2 border-gray-100 transition-all duration-300'
 					)}
 				>
 					<div className='flex items-center justify-center'>
@@ -53,7 +53,6 @@ export const SimpleDrawer = ({ children, queryKey, queryValues, className }: Sim
 
 					<div className='pt-6 pl-8 flex justify-start items-center'>
 						<div>{children}</div>
-						<div className='w-full h-6 bg-neutral-100 absolute bottom-0 left-0 rounded-b-3xl' />
 					</div>
 				</div>
 			)}
