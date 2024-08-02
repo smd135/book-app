@@ -14,15 +14,9 @@ export const AddBookInput = ({ name, label, type, placeholder, errors, disabled,
 	const error = (errors && errors[name]?.message) || '';
 	return (
 		<div className='flex flex-col gap-y-0.5'>
-			<p className='text-[#424242] text-sm'>{label}</p>
-			<input
-				type={type || 'text'}
-				{...register(name)}
-				placeholder={placeholder}
-				disable={disabled}
-				className='w-full px-2 py-1.5 rounded-xl'
-			/>
-			{errors && error && <p className='text-xs font-medium text-[#795c49] '>{error as any}</p>}
+			<p className='text-[#424242] text-sm mb-1'>{label}</p>
+			<input type={type || 'text'} {...register(name)} placeholder={placeholder} disable={disabled} className='w-full px-2 py-1.5 rounded-xl' />
+			{errors && error && <p className='text-xs font-medium text-[#795c49] mt-1 pl-1'>{error as any}</p>}
 		</div>
 	);
 };

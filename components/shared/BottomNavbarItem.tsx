@@ -16,7 +16,7 @@ export const BottomNavbarItem = ({ icon: Icon, href }: BottomNavbarItemProps) =>
 	const url = qs.stringifyUrl(
 		{
 			url: pathname,
-			query: { show_add: 1 },
+			query: { show_add: 'true' },
 		},
 		{ skipNull: true }
 	);

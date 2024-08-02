@@ -36,7 +36,7 @@ const LoginForm = () => {
 						await login(values).then((data) => {
 							setLoginError(data?.error);
 						});
-						toast.success('Herlisch Willkommen');
+						toast.success('Успішна авторизація');
 					});
 				})}
 				className='flex flex-col justify-center items-center gap-3 w-[70%]'
@@ -49,24 +49,11 @@ const LoginForm = () => {
 					className='border-2 border-gray-300 px-3 py-1.5 rounded-2xl text-lg w-full'
 				/>
 				{errors.email && <p>{errors.email.message}</p>}
-				<input
-					type='password'
-					{...register('password')}
-					placeholder='пароль'
-					className='border-2 border-gray-300 px-3 py-1.5 rounded-2xl text-lg w-full'
-				/>
+				<input type='password' {...register('password')} placeholder='пароль' className='border-2 border-gray-300 px-3 py-1.5 rounded-2xl text-lg w-full' />
 				{errors.password && <p>{errors.password.message}</p>}
-				{loginError && (
-					<p className='w-full px-2 py-1 border-2 border-neutral-200 rounded-lg bg-red-200 text-red-700'>
-						{loginError}
-					</p>
-				)}
+				{loginError && <p className='w-full px-2 py-1 border-2 border-neutral-200 rounded-lg bg-red-200 text-red-700'>{loginError}</p>}
 				<div className='w-full flex flex-col gap-2'>
-					<button
-						disabled={isPending}
-						type='submit'
-						className='font-semibold bg-emerald-500 px-3 py-1 rounded-2xl disabled:opacity-60 w-full text-lg'
-					>
+					<button disabled={isPending} type='submit' className='font-semibold bg-emerald-500 px-3 py-1 rounded-2xl disabled:opacity-60 w-full text-lg'>
 						Ввійти
 					</button>
 					<Link href='/auth/register'>Не зареєстровані?</Link>

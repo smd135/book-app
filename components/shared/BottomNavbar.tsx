@@ -11,7 +11,7 @@ export const BottomNavbar = () => {
 			icon: PiBooksLight,
 		},
 		{
-			href: '/search',
+			href: '/explore',
 			icon: PiCompassLight,
 		},
 		{
@@ -29,7 +29,7 @@ export const BottomNavbar = () => {
 	];
 
 	return (
-		<div className='fixed bottom-0 left-0 h-12 w-full bg-white border-t border-[#b1b1b1] z-20'>
+		<div className='fixed bottom-0 left-0 h-12 w-full bg-white border-t border-[#b1b1b1] z-50'>
 			<div className='px-1 py-2 flex items-center justify-around'>
 				{navIcons.map((item) => {
 					return <BottomNavbarItem key={item.href} href={item.href} icon={item.icon} />;

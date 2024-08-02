@@ -7,8 +7,10 @@ export const POST = async (req: Request) => {
 	const user = session?.user;
 	try {
 		if (!user?.id) return new NextResponse('Unathorized', { status: 401 });
-		const { title, author, page_count } = await req.json();
-		const book = await prisma.book.create({ data: { user_id: user?.id, title, author, page_count } });
+		const { title, cover_url, author, page_count, description } = await req.json();
+		const book = await prisma.book.create({
+			data: { user_id: user?.id, title, cover_url, author, page_count, description },
+		});
 		return NextResponse.json(book);
 	} catch (error) {
 		console.log(error, '[book create error]');

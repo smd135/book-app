@@ -6,7 +6,7 @@ export const GobackButton = () => {
 	const router = useRouter();
 	return (
 		<button onClick={() => router.back()} className=''>
-			<GoArrowLeft size={20} />
+			<GoArrowLeft size={24} />
 		</button>
 	);
 };

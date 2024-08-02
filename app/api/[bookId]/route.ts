@@ -34,3 +34,16 @@ export const PATCH = async (req: Request, { params }: { params: { bookId: string
 		return new NextResponse('Internal Server Error', { status: 500 });
 	}
 };
+export const DELETE = async (req: Request, { params }: { params: { bookId: string } }) => {
+	const session = await auth();
+	const user = session?.user;
+	try {
+		if (!user?.id) return new NextResponse('Unathorized', { status: 401 });
+		const deleteBook = await prisma.book.delete({ where: { user_id: session?.user?.id, id: params.bookId } });
+
+		return NextResponse.json('Book deleted');
+	} catch (error) {
+		console.log(error, '[single book delete error]');
+		return new NextResponse('Internal Server Error', { status: 500 });
+	}
+};

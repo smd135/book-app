@@ -3,7 +3,7 @@ import { GoSearch } from 'react-icons/go';
 export const SearchBar = () => {
 	return (
 		<>
-			<GoSearch className='absolute top-5 left-5 z-10' size={20} />
+			<GoSearch className='absolute top-7 left-5 z-10' size={20} />
 			<input
 				type='text'
 				name='search'

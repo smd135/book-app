@@ -18,7 +18,7 @@ const BookIdPage = async ({ params }: { params: { bookId: string } }) => {
 	});
 
 	return (
-		<div className='px-6 py-4'>
+		<div className='px-6 py-4 pb-12'>
 			<SingleBook book={[book]} bookId={book.id} />
 		</div>
 	);

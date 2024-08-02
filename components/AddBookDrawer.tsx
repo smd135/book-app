@@ -10,7 +10,6 @@ import Link from 'next/link';
 
 export const AddBookDrawer = () => {
 	const drawerRef = useRef<HTMLDivElement>(null);
-
 	const [showDrawer, setShowDrawer] = useState(false);
 	const searchParams = useSearchParams();
 
@@ -19,15 +18,15 @@ export const AddBookDrawer = () => {
 	const url = qs.stringifyUrl(
 		{
 			url: pathname,
-			query: { show_add: 0 },
+			query: { show_add: 'false' },
 		},
 		{ skipNull: true, skipEmptyString: true }
 	);
 	useOutsideClick(() => router.push(url), drawerRef);
 	useEffect(() => {
-		if (searchParams.get('show_add') === '1') {
+		if (searchParams.get('show_add') === 'true') {
 			setShowDrawer(true);
-		} else if (searchParams.get('show_add') === '0') {
+		} else if (searchParams.get('show_add') === 'false' || pathname === '/add') {
 			setShowDrawer(false);
 		}
 	}, [showDrawer, searchParams]);
@@ -38,8 +37,8 @@ export const AddBookDrawer = () => {
 				<div
 					ref={drawerRef}
 					className={clsx(
-						'bg-white absolute bottom-0 left-0 h-[12rem] z-100 w-full opacity-0 transform -translate-y-full transition-all duration-150 rounded-xl shadow-sm',
-						showDrawer && 'opacity-100 bottom-0 transform translate-y-0'
+						'bg-white absolute bottom-0 left-0 min-h-[14rem] w-full opacity-0 transform -translate-y-full transition-all duration-150 rounded-xl shadow-sm border-t-2 border-neutral-200',
+						showDrawer && 'opacity-100 bottom-0  transform -translate-y-[1.5rem] border-t-2 border-gray-100 z-20'
 					)}
 				>
 					<div className='flex items-center justify-center'>
@@ -47,19 +46,19 @@ export const AddBookDrawer = () => {
 					</div>
 
 					<div className='pt-6 pl-8 pb-12 flex justify-start items-center'>
-						<div className='flex flex-col gap-3'>
-							<span className='flex items-center gap-3'>
-								<PiBarcode className='w-4 h-4' />
-								<p className='font-medium'>Сканувати ISBN книжки</p>
-							</span>
-							<span className='flex items-center gap-3'>
+						<div className='flex flex-col gap-6'>
+							<Link href='/search' className='flex items-center gap-3'>
 								<GoSearch className='w-4 h-4' />
 								<p className='font-medium'>Пошук книжок</p>
-							</span>
+							</Link>
 							<Link href='/add' className='flex items-center gap-3'>
 								<GoPencil className='w-4 h-4' />
 								<p className='font-medium'>Додати книжку вручну</p>
 							</Link>
+							<span className='flex items-center gap-3'>
+								<PiBarcode className='w-4 h-4' />
+								<p className='font-medium'>Сканувати ISBN книжки</p>
+							</span>
 						</div>
 						<div className='w-full h-6 bg-neutral-100 absolute bottom-0 left-0 rounded-b-3xl' />
 					</div>

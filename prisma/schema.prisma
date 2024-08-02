@@ -7,17 +7,6 @@ datasource db {
    url      = env("DATABASE_URL")
 }
 
-model User {
-   id            String    @id @default(uuid())
-   username      String?
-   email         String?   @unique
-   emailVerified DateTime?
-   image         String?
-   password      String?
-   accounts      Account[]
-   books         Book[]
-}
-
 model Account {
    id                String  @id @default(uuid())
    userId            String
@@ -36,26 +25,43 @@ model Account {
    @@unique([provider, providerAccountId])
 }
 
+model User {
+   id            String      @id @default(uuid())
+   username      String?
+   email         String?     @unique
+   emailVerified DateTime?
+   image         String?
+   password      String?
+   accounts      Account[]
+   books         Book[]
+   shelves       BookShelf[]
+}
+
 model Book {
    id          String      @id @default(uuid())
    cover_url   String?
    title       String
    author      String
    page_count  Int?
-   shelf       BookShelf[]
-   user_id     String
-   users       User?       @relation(fields: [user_id], references: [id])
-   bookShelfId String?
+   isbn        Int?
+   description String?
+   shelves     BookShelf[]
 
+   users     User?    @relation(fields: [user_id], references: [id])
+   user_id   String
    finished  Boolean  @default(false)
+   reading   Boolean  @default(false)
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
 }
 
 model BookShelf {
    id        String   @id @default(uuid())
-   books     Book     @relation(fields: [book_id], references: [id])
-   book_id   String
+   books     Book[]
+   user      User?    @relation(fields: [user_id], references: [id])
+   user_id   String?
+   name      String
+   img_url   String?
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
 }
