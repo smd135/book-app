@@ -37,8 +37,8 @@ export const AddBookDrawer = () => {
 				<div
 					ref={drawerRef}
 					className={clsx(
-						'bg-white absolute bottom-0 left-0 min-h-[14rem] w-full opacity-0 transform -translate-y-full transition-all duration-150 rounded-xl shadow-sm border-t-2 border-neutral-200',
-						showDrawer && 'opacity-100 bottom-0  transform -translate-y-[1.5rem] border-t-2 border-gray-100 z-20'
+						'bg-white absolute left-0 min-h-[14rem] w-full opacity-0 transform -translate-y-full transition-all duration-150 rounded-xl shadow-sm border-t-2 border-neutral-200',
+						showDrawer && 'opacity-100 bottom-0  transform translate-y-[0rem] border-t-2 border-gray-100 z-20'
 					)}
 				>
 					<div className='flex items-center justify-center'>

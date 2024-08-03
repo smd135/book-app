@@ -39,7 +39,7 @@ const SearchPage = () => {
 		try {
 			setLoading(true);
 			const { data } = await axios.get(
-				`${process.env.NEXT_PUBLIC_GOOGLE_BOOKS}?q=intitle:${debouncedValue}&projection=lite&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`
+				`${process.env.NEXT_PUBLIC_GOOGLE_BOOKS}?q=${debouncedValue}&projection=lite&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`
 			);
 			if (searchValue === '') return null;
 			setBooks(data.items);
@@ -72,7 +72,7 @@ const SearchPage = () => {
 
 			{errors && (
 				<div className='w-full h-20 mt-2'>
-					<p>Помилка завантаження</p>
+					<p className='text-orange-400/70 font-medium'>Помилка завантаження</p>
 				</div>
 			)}
 			<div className='mt-4 flex flex-col gap-y-3'>
@@ -84,7 +84,7 @@ const SearchPage = () => {
 									{new Array(book.volumeInfo).map((values) => {
 										const thumbnail = values.imageLinks || '';
 										if (thumbnail) {
-											return <Image key={values.title} fill sizes='100%' src={thumbnail.medium} alt={`cover`} className='rounded-sm' />;
+											return <Image key={values.title} fill sizes='100%' src={thumbnail.smallThumbnail} alt={`cover`} className='rounded-sm' />;
 										} else {
 											return (
 												<span key={values.title} className='flex justify-center items-center flex-shrink-0 w-16 h-full bg-[#bebebe] rounded-lg'>
@@ -101,7 +101,6 @@ const SearchPage = () => {
 							</Link>
 						);
 					})}
-				{(!books || debouncedValue === '') && <p>Введіть будь ласка назву книги</p>}
 			</div>
 		</div>
 	);

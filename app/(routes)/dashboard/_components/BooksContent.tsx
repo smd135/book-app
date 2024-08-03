@@ -32,7 +32,7 @@ export const BooksContent = ({ books }: { books: Book[] }) => {
 				<div className='w-full flex flex-col gap-5 mt-6'>
 					<>
 						{books?.map((book: Book) => (
-							<Link href={`/books/${book.id}`} key={book.id} className='w-full flex items-center gap-4'>
+							<Link href={`/books/${book.id}`} key={book.id} className='w-full flex items-center gap-4 last:mb-[20%]'>
 								<div className='relative w-24 h-28 '>
 									{book.cover_url ? (
 										<Image src={book.cover_url} alt='book cover' fill sizes='100%' className='object-cover rounded-sm' />

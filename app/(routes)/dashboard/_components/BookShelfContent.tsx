@@ -25,17 +25,20 @@ export const BookShelfContent = () => {
 	useEffect(() => {
 		getShelves();
 	}, []);
-	console.log(shelves, 'shelves');
 	return (
 		<div className='w-full'>
 			<BookFilterButtons />
-			<div className='flex flex-col gap-4 mt-4'>
+			<div className='flex flex-col gap-0 mt-4'>
 				{shelves &&
 					shelves.map((shelf) => {
 						const book = shelf.books;
 						return (
-							<Link key={shelf.id} href={`/shelves/${shelf.id}`} className='w-full flex flex-col gap-4'>
-								<div className='  flex items-center gap-4 w-full'>
+							<Link
+								key={shelf.id}
+								href={`/shelves/${shelf.id}`}
+								className='w-full flex flex-col gap-4 py-4 border-b last:border-none shadow-[4px] border-neutral-200/70'
+							>
+								<div className='flex items-center gap-4 w-full'>
 									<div className='relative w-20 h-20'>
 										{shelf.img_url && <Image src={shelf.img_url} fill alt='' sizes='100%' className='object-cover' />}
 										{!shelf.img_url &&
@@ -43,11 +46,11 @@ export const BookShelfContent = () => {
 											book.length > 0 &&
 											book.map((item) => (
 												<div key={item.id} className=''>
-													{item.cover_url && <Image src={item.cover_url} fill alt='' sizes='100%' className='object-cover' />}
+													{item.cover_url && <Image src={item.cover_url} fill alt='' sizes='100%' className='object-cover rounded-full' />}
 												</div>
 											))}
 										{!shelf.img_url && (
-											<span className='w-20 h-20 bg-neutral-200 flex justify-center items-center'>
+											<span className='w-20 h-20 bg-neutral-200 flex justify-center items-center rounded-full'>
 												<GoImage className='text-neutral-500' />
 											</span>
 										)}
@@ -67,9 +70,9 @@ export const BookShelfContent = () => {
 			{!shelves.length && (
 				<div className='flex justify-center items-center w-full h-full'>
 					<div className='flex flex-col items-center gap-1 w-full text-neutral-700'>
-						<p>У вас поки що немає створених полиць</p>
+						<p>У вас поки що немає створених полиць,</p>
 						<div>
-							Для створення, натисніть
+							для створення, натисніть
 							<Link href='/shelves/new' className='pl-1 inline-block font-medium text-amber-600'>
 								тут
 							</Link>
