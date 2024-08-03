@@ -49,15 +49,15 @@ export const AddBookDrawer = () => {
 						<div className='flex flex-col gap-6'>
 							<Link href='/search' className='flex items-center gap-3'>
 								<GoSearch className='w-4 h-4' />
-								<p className='font-medium'>Пошук книжок</p>
+								<p className='font-medium'>Пошук книг</p>
 							</Link>
 							<Link href='/add' className='flex items-center gap-3'>
 								<GoPencil className='w-4 h-4' />
-								<p className='font-medium'>Додати книжку вручну</p>
+								<p className='font-medium'>Додати книгу вручну</p>
 							</Link>
 							<span className='flex items-center gap-3'>
 								<PiBarcode className='w-4 h-4' />
-								<p className='font-medium'>Сканувати ISBN книжки</p>
+								<p className='font-medium'>Сканувати ISBN книги</p>
 							</span>
 						</div>
 					</div>

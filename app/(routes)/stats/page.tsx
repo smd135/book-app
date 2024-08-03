@@ -1,4 +1,4 @@
 const StatsPage = () => {
-	return <div className=' f'>Stats</div>;
+	return <div className=' f'>Статистика</div>;
 };
 export default StatsPage;

@@ -39,7 +39,7 @@ const SearchPage = () => {
 		try {
 			setLoading(true);
 			const { data } = await axios.get(
-				`${process.env.NEXT_PUBLIC_GOOGLE_BOOKS}?q=${debouncedValue}&projection=lite&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`
+				`${process.env.NEXT_PUBLIC_GOOGLE_BOOKS}?q=${debouncedValue}&projection=lite&langRestrict=uk&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`
 			);
 			if (searchValue === '') return null;
 			setBooks(data.items);
@@ -79,7 +79,7 @@ const SearchPage = () => {
 				{books &&
 					books.map((book: BookT) => {
 						return (
-							<Link key={book.id} href={`/search/${book.id}`} className='bg-white rounded-xl p-2 flex gap-4'>
+							<Link key={book.id} href={`/search/${book.id}`} className='bg-white rounded-xl p-2 flex gap-4 last:mb-16'>
 								<div className='relative flex items-center justify-center w-16 h-20'>
 									{new Array(book.volumeInfo).map((values) => {
 										const thumbnail = values.imageLinks || '';
